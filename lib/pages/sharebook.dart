@@ -78,7 +78,7 @@ class _ShareBookScreenState extends State<ShareBookScreen> {
           builder: (builder) {
             return AlertDialog(
               title: Text("Message"),
-              content: Text("Update successful"),
+              content: Text("Shared successfully"),
               actions: [
                 ElevatedButton(
                     onPressed: () {
