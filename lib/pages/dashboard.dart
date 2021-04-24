@@ -15,6 +15,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Future getData(String endPoint) async {
     var response = await Api().getData(endPoint);
     var data = json.decode(response.body);
+    print(data);
     return data;
   }
 
@@ -192,7 +193,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
 
                   FutureBuilder(
-                    future: getBooks('books'),
+                    future: getBooks('bookrequest'),
                     builder: (context, snapshot) {
                       switch (snapshot.connectionState) {
                         case ConnectionState.waiting:
@@ -207,56 +208,48 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
                               var mydata = snapshot.data[index];
+                              print("Total books " +
+                                  snapshot.data.length.toString());
                               return GestureDetector(
                                 onTap: () {
-                                  provider.setBookID(mydata['id']);
-                                  Navigator.pushNamed(context, 'bookprofile');
+                                  // provider.setBookID(mydata['id']);
+                                  // Navigator.pushNamed(context, 'bookprofile');
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   child: Card(
                                       elevation: .2,
                                       child: ListTile(
-                                        leading: Container(
-                                          width: 100,
-                                          height: 100,
-                                          child: Image.network(
-                                              link + mydata['image']),
-                                        ),
                                         title: Text(mydata['name']),
                                         subtitle: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Publication: " +
-                                                  mydata['publication'],
+                                              "Remarks: " +
+                                                  mydata['remarks'].toString(),
                                               style: TextStyle(fontSize: 12),
                                             ),
-                                            mydata['price'] == null
+                                            Text(
+                                              "Category: " +
+                                                  mydata['category'].toString(),
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            Divider(),
+                                            Text(
+                                              "Requested By: " +
+                                                  mydata['user'].toString(),
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            mydata['mobile'] == null
                                                 ? SizedBox()
                                                 : Text(
-                                                    'Price: Rs.' +
-                                                        mydata['price']
+                                                    "Moile: " +
+                                                        mydata['mobile']
                                                             .toString(),
                                                     style:
                                                         TextStyle(fontSize: 12),
-                                                  ),
-                                            mydata['description'] == null
-                                                ? SizedBox()
-                                                : Text(
-                                                    mydata['description'],
-                                                    style:
-                                                        TextStyle(fontSize: 12),
-                                                    maxLines: 2,
-                                                  ),
-                                            Divider(),
-                                            Text(
-                                              mydata['status'] +
-                                                  " | " +
-                                                  mydata['created_at'],
-                                              style: TextStyle(fontSize: 12),
-                                            ),
+                                                  )
                                           ],
                                         ),
                                       )),
