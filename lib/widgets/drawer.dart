@@ -179,6 +179,14 @@ class _MyDrawerState extends State<MyDrawer> {
               },
             ),
           ),
+
+          ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, 'feedback');
+            },
+            leading: Icon(Icons.feedback),
+            title: Text("Feedback"),
+          ),
           ListTile(
             onTap: () async {
               Map data = {};

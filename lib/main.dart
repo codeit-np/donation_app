@@ -1,6 +1,7 @@
 import 'package:final_food_app/pages/booklist.dart';
 import 'package:final_food_app/pages/bookprofile.dart';
 import 'package:final_food_app/pages/dashboard.dart';
+import 'package:final_food_app/pages/feedback.dart';
 import 'package:final_food_app/pages/login.dart';
 import 'package:final_food_app/pages/profile.dart';
 import 'package:final_food_app/pages/register.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         'bookprofile': (context) => BookProfilePage(),
         'share': (context) => ShareBookScreen(),
         'search': (context) => SearchScreen(),
+        'feedback': (context) => FeedbackScreen(),
       },
     );
   }
